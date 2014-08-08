@@ -1,0 +1,19 @@
+{
+  "name": "DisconnectFiles",
+  "version": "0.1.0",
+  "description": "Disconnect files from Microsoft file server",
+  "main": "app.js",
+  "dependencies": {
+	"express" : "0.4.x",
+	"express-middlewares": "0.x",
+	"jade":	"1.x",
+	"activedirectory": "0.5.x",
+	"node-xmpp": "1.x"
+	},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexander Makhnev",
+  "license": "GPL v2"
+}
