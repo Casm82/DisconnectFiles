@@ -1,0 +1,10 @@
+header
+    - if (session.user) {
+        div#loginInfo Вы вошли, как&nbsp;
+            span= session.user.username
+            | .
+            form(method="GET", action="/logout")
+                input(type="submit", value="Выйти")
+    - } else {
+        a(href='/') Вход
+    - }

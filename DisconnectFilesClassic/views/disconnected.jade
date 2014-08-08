@@ -1,0 +1,36 @@
+extends layout
+block css
+    link(rel='stylesheet', href='/styles/index.css')
+
+block content
+    - if (session.user) {
+        div#filesManagment
+            strong Отчёт об отключении файлов:
+            ul
+                - each out,num in output
+                    - if (out) {
+                        li= out.resultTxt
+                            - if (out.resultNums == 1) {
+                                br
+                                | Закрыта&nbsp
+                                = out.resultNums
+                                | &nbspсессия.
+                            - }
+                            - if ((out.resultNums >= 2)&&(out.resultNums <= 4)) {
+                                br
+                                | Закрыто&nbsp
+                                = out.resultNums
+                                | &nbspсессии.
+                            - }
+                            - if (out.resultNums >= 5) {
+                                br
+                                | Закрыто&nbsp
+                                = out.resultNums
+                                | &nbspсессий.
+                            - }
+                    - } else {
+                        li Нет подключений к файлу&nbsp
+                           strong= filesArray[num] 
+                    - }
+            a(href="/managefiles") Вернуться на страницу управления
+    - }

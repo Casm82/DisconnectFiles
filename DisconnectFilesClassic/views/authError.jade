@@ -1,0 +1,24 @@
+extends layout
+block css
+    link(rel='stylesheet', href='/styles/index.css')
+
+block content
+    - if (code=="notLoggedIn")
+        div#errorMsg Вы не авторизованы.&nbsp
+            a(href="/") Выполните вход.
+    - if (code=="notAuthed")
+        div#errorMsg Не верный пароль для пользователя 
+            strong= username
+            | .
+            br
+            a(href="/") Вернуться назад
+    - if (code=="notPermited")
+        div#errorMsg
+            p Пользователю&nbsp
+                strong= username
+                | &nbspне предостален доступ для входа.
+            p Обратитесь к Администратору, для включения пользователя&nbsp
+                strong= username
+                | &nbspв группу&nbsp
+                br
+                strong "CN=DB_Group,OU=Databases,DC=domain,DC=ru"
