@@ -28,7 +28,7 @@ module.exports = function (app) {
 			authResult.ip = req.ip;
 			/* authResult: {
 				"time":"Tue Aug 05 2014 09:37:48 GMT+0400 (Арабское время (зима))",
-				"error":null,"username":"027018","authed":true,"cennamMember":true,
+				"error":null,"username":"123456","authed":true,"cennamMember":true,
 				"ip":"172.16.1.2"}
 			*/
 			console.log("authResult: %j\n", authResult);
