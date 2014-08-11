@@ -116,10 +116,12 @@ function pageLoaded() {
     var buttonDB2 = document.getElementById("buttonDB2");
     var buttonDB3 = document.getElementById("buttonDB3");
     var buttonDB4 = document.getElementById("buttonDB4");
+    var buttonDB5 = document.getElementById("buttonDB5");
 
     buttonNotify.addEventListener("click", sendNotify, false);
     buttonDB1.addEventListener("click", disconnectFiles, false);
     buttonDB2.addEventListener("click", disconnectFiles, false);
     buttonDB3.addEventListener("click", disconnectFiles, false);
     buttonDB4.addEventListener("click", disconnectFiles, false);
+    buttonDB5.addEventListener("click", disconnectFiles, false);
 }

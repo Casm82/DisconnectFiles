@@ -18,11 +18,19 @@
     "filesDB4Array": [
         "N:\\Programs\\Database\\DB4\\file1.mdb",
         "N:\\Programs\\Database\\DB4\\file1.ldb"],
+    "filesDB5Array": [
+        "N:\\Programs\\Database\\DB5\\file1.mdb",
+        "N:\\Programs\\Database\\DB5\\file1.ldb",
+        "N:\\Programs\\Database\\DB5\\file2.mdb",
+        "N:\\Programs\\Database\\DB5\\file2.ldb",
+        "N:\\Programs\\Database\\DB5\\file3.mdb",
+        "N:\\Programs\\Database\\DB5\\file3.ldb"
+        ],
     "ldapConfig": { "url": "ldap://dc.domain.ru",
         "baseDN": "dc=domain,dc=ru",
         "username": "testuser@domain.ru",
         "password": "testpwd" },
-    "groupName":  "DB_Group",
+    "groupName":  "DBGroup",
     "jabber": {
         "login": "info@jabber.domain.ru",
         "password": "password",

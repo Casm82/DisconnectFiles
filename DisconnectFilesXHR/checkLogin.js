@@ -12,6 +12,6 @@ exports.authD = function (req, res, next) {
 }
 
 exports.genkey = function () {
-  return "NWSsPhpyHixC5+W1AcV57J4RPFIxSZD+95LHJ7FZumQ=";
-  // TODO: genkey <--- require('crypto')
+    var crypto = require('crypto'); 
+    return crypto.randomBytes(32).toString("base64");
 }

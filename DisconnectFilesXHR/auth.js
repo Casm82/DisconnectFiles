@@ -8,11 +8,11 @@ process.on('message', function (user) {
     var ad = new ActiveDirectory(appSetting.ldapConfig);
 
     ad.authenticate(username + "@domain.ru", password, function(err, auth) {
-		var loginTime = new Date();
+	var loginTime = new Date();
         var authResult = {
 				"time": loginTime.toLocaleString(), 
 				"error": err, "username": username,
-				"authed": auth, "cennamMember": null};
+				"authed": auth, "DBGroupMember": null};
         
         if (err) {
             //console.log('ERROR: '+JSON.stringify(err));
@@ -24,13 +24,12 @@ process.on('message', function (user) {
             //console.log('Authenticated!');
                         
             ad.isUserMemberOf(username, appSetting.groupName, function(err, isMember) {
-                authResult.cennamMember=isMember;
+                authResult.DBGroupMember=isMember;
                 if (err) {
                     console.log('ERROR: ' +JSON.stringify(err));
                     return;
                 }
 
-                //console.log(username + ' isMemberOf ' + appSetting.groupName + ': ' + isMember);
                 process.send(authResult);
             });
         }

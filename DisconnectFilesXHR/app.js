@@ -1,6 +1,5 @@
 var express = require('express'),
-    expressMiddlewares = require('express-middlewares'),
-    exec = require('child_process').exec;
+    expressMiddlewares = require('express-middlewares');
 
 var checkLogin = require('./checkLogin');
 var app = express();

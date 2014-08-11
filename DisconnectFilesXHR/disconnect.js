@@ -27,6 +27,7 @@ process.on('message', function (filesArray) {
                     .replace(/\"/g, "")
                     .split(/\r\n/)
                     .filter(function (elm) { return elm;});
+		    
                 var result = 
                     {
                         resultTxt: outputArray[0],

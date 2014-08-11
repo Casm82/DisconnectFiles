@@ -7,7 +7,7 @@ module.exports = function (app) {
 
     app.get('/', function(req, res){
         if (req.session.user) { res.redirect('/managefiles') };
-        res.render('index', 
+        res.render('login', 
             {
                 title: "Отключение файлов",
                 session: req.session
@@ -26,17 +26,17 @@ module.exports = function (app) {
         authProc.send(user);
         
         authProc.on('message', function(authResult) {
-			authResult.ip = req.ip;
-			/* authResult: {
-				"time":"Tue Aug 05 2014 09:37:48 GMT+0400 (Арабское время (зима))",
-				"error":null,"username":"123456","authed":true,"DB1Member":true,
-				"ip":"172.16.1.2"}
-			*/
-			console.log("authResult: %j\n", authResult);
-            if (authResult.authed) {
-                if(authResult.DB1Member){
+	    authResult.ip = req.ip;
+	    /* authResult: {
+		"time":"Tue Aug 05 2014 09:37:48 GMT+0400 (Арабское время (зима))",
+		"error":null,"username":"123456","authed":true,"DBGroupMember":true,
+		"ip":"172.16.1.2"}
+	    */
+
+	    if (authResult.authed) {
+                if(authResult.DBGroupMember){
                 // авторизован и есть доступ
-                    user.granted = true;
+                    user.granted = true;	// ставим метку авторизации
                     req.session.user = {username: user.username, granted: user.granted};
                     //  "user":{"username":"123456","granted":true}}
                     res.redirect('/managefiles');
@@ -70,8 +70,7 @@ module.exports = function (app) {
         res.render('managefiles', 
             {
                 title: "Отключение файлов",
-                session: req.session,
-                filesArray: JSON.stringify(appSetting.filesDB1Array)
+                session: req.session
             });
     });
 
@@ -82,6 +81,7 @@ module.exports = function (app) {
 
 
     app.post('/disconnect', checkLogin.authD, function(req, res) {
+      // запрос на данную точку входа поступает с помощью XHR
         var disconnectExec = require('child_process').fork(__dirname + './../disconnect.js');
         
         switch(req.body.fileGroup) {
@@ -93,17 +93,27 @@ module.exports = function (app) {
                 { var filesArray = appSetting.filesDB3Array; break; };
             case "buttonDB4": 
                 { var filesArray = appSetting.filesDB4Array; break; };
+            case "buttonDB5": 
+                { var filesArray = appSetting.filesDB5Array; break; };
             }
         disconnectExec.send(filesArray);
-        
+
         disconnectExec.on('message', function(disconnectResult) {
             var eventTime = new Date();
             console.log("\n%j",eventTime);
             console.log("disconnectResult: %j", disconnectResult);
+
             var jadeOptions =
-                {
-                    filesArray: filesArray,
-                    output: disconnectResult,
+                {   // C:\\share\\Database\\DB1 ---> S:\\Database\\DB1
+            	    // заменяем отображение пути к файлам с того как есть на сервере
+            	    // на то как должны видет в отчёте пользователи отсительно сетевого диска S:
+                    jadeFiles: filesArray.map(function (elm) { return elm.replace(/\w:\\share/i,"S:"); }),
+                    jadeReport: disconnectResult.map(function (elm) {
+                                    if (elm) {
+                                        return {resultTxt:  elm.resultTxt.replace(/\w:\\share/i,"S:"),
+                                                resultNums: elm.resultNums}
+                                    } else { return null}
+                                }),
                     session: req.session
                 };
             var html = jade.renderFile('./views/jadeElements/disconnectReport.jade', jadeOptions);
@@ -114,10 +124,10 @@ module.exports = function (app) {
 
     app.post('/sendNotify', checkLogin.authD, function(req, res) {
         console.log("xmpp recieve: %j", req.body);
-        
+
         var jabber = require('child_process').fork(__dirname + './../jabber.js');
         jabber.send(req.body);  // {"notify":"buttonNotify"}
-        
+
         jabber.on('message', function(sendResult) {
             var eventTime = new Date();
             console.log("\n%j",eventTime.toLocaleString());
@@ -127,7 +137,6 @@ module.exports = function (app) {
         });
     });
 
-    
     // error handlers
     errors(app);
 }

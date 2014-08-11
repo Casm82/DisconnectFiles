@@ -37,13 +37,16 @@ block content
                 div#buttonDB4.manageButtons
                     | Отключить файлы в каталоге Database\DB4:&nbsp
                     strong file1
-                div#confirmDisconnect
-                    | Все открытые файлы будут закрыты. Подтверждаете?
-                    div
-                        button(name="confirmDisconnect", value="yes")
-                            img(src="/images/dialog-ok-apply.png" alt="Подтвердить" title="Подтвердить" width="16px" heigth="16px")
-                            |  да
-                        button(name="confirmDisconnect", value="no", autofocus)
-                            img(src="/images/dialog-close.png" alt="Отменить" title="Отменить" width="16px" heigth="16px")
-                            |  нет
+		div#buttonDB5.manageButtons
+                    | Отключить файлы в каталоге Database\DB5:&nbsp
+                    strong file1
+	    div#confirmDisconnect
+		| Все открытые файлы будут закрыты. Подтверждаете?
+		div
+		    button(name="confirmDisconnect", value="yes")
+			img(src="/images/dialog-ok-apply.png" alt="Подтвердить" title="Подтвердить" width="16px" heigth="16px")
+			|  да
+		    button(name="confirmDisconnect", value="no", autofocus)
+			img(src="/images/dialog-close.png" alt="Отменить" title="Отменить" width="16px" heigth="16px")
+			|  нет
         - }

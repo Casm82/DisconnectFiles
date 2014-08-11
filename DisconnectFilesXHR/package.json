@@ -1,6 +1,6 @@
 {
   "name": "DisconnectFiles",
-  "version": "0.1.0",
+  "version": "0.1.5",
   "description": "Disconnect files from Microsoft file server",
   "main": "app.js",
   "dependencies": {

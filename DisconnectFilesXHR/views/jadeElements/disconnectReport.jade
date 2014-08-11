@@ -1,6 +1,6 @@
 h2 Отчёт об отключении файлов:
 ul
-    - each out,num in output
+    - each out,num in jadeReport
         - if (out) {
             li= out.resultTxt
                 - if (out.resultNums == 1) {
@@ -23,7 +23,7 @@ ul
                 - }
         - } else {
             li Нет подключений к файлу&nbsp
-               strong= filesArray[num] 
+               strong= jadeFiles[num] 
         - }
 a(href="/managefiles")
     button Вернуться на страницу управления
