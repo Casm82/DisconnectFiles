@@ -2,18 +2,18 @@
 window.addEventListener("load", function () {
   // Устанавливаем сессию Socket.io
   var socket = io.connect(window.location.origin);
-  
+
   socket.on("grpClosed", function (obj) {
     var result = document.getElementById("finalResult");
     result.innerHTML = obj.txt;
   });
-  
+
   socket.on("fileClosed", function (obj) {
     var fileStatus = document.getElementById(obj.fileIndex);
     fileStatus.className = "statusOK";
     fileStatus.innerHTML = "отключено " + obj.number;
   });
-  
+
   socket.on("fileError", function (obj) {
     var fileStatus = document.getElementById(obj.fileIndex);
     fileStatus.className = "statusError";
@@ -37,7 +37,7 @@ window.addEventListener("load", function () {
       var confirmDisconnectDiv = document.getElementById("confirmDisconnect");
       confirmDisconnectDiv.style.display="block";
       document.getElementById("notifyUpdate").style.opacity = "0.25";
-   
+
       // Выделяем нажатую кнопку и убираем выделение с других кнопок
       var manageButtonsArray = document.getElementsByClassName("manageButtons");
       for(var i=0; i < manageButtonsArray.length; i++) {
@@ -56,7 +56,7 @@ window.addEventListener("load", function () {
       for(var i=0; i < confirmButtons.length; i++) {
         confirmButtons[i].addEventListener("click", confirmClicked, false);
       }
-      
+
       function confirmClicked(){
         var answer = this.value;
         if (answer=="yes") {
@@ -64,7 +64,7 @@ window.addEventListener("load", function () {
           req.open("POST", "/disconnect");
           req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
           req.send(JSON.stringify({"fileGroup": elm, "socketID": socketID}));
-          
+
           req.onreadystatechange = function() {
             if (req.readyState === 4) {
               var workArea = document.getElementById("workArea");
@@ -81,8 +81,8 @@ window.addEventListener("load", function () {
             }
           }
         }
-        if (answer=="no") { 
-          setTimeout( function () { window.location="/"} , 500); 
+        if (answer=="no") {
+          setTimeout( function () { window.location="/"} , 500);
         };
       }
     }
@@ -113,7 +113,7 @@ window.addEventListener("load", function () {
       // удаляем обработчики нажатия на кнопки
       elmt.removeEventListener("click", sendNotify, false);
     };
-    
+
     var confirmButtons = document.getElementsByClassName("confirmSend");
     for(var i=0; i < confirmButtons.length; i++) {
       confirmButtons[i].addEventListener("click", confirmClicked, false);

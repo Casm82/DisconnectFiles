@@ -57,7 +57,7 @@ input, button {
   margin: 0.5em;
   cursor: pointer;
 }
-.notifyButtons:hover, .manageButtons:hover { 
+.notifyButtons:hover, .manageButtons:hover {
   background: yellow;
   box-shadow: 0px 1px 2px 2px rgba(0,0,0,0.5);
 }
@@ -89,12 +89,12 @@ button[value="no"]   { position: absolute; right: 1em;}
   position: relative;
   left: -2em;
 }
-  
+
 q {font-style: italic;}
 
 table#report {
   border: 1px solid black;
-  border-collapse: collapse; 
+  border-collapse: collapse;
 }
 table#report td, table#report th {
   border: 1px solid black;
