@@ -1,0 +1,36 @@
+{
+  "httpsPort":  3000,
+  "logFile":    "C:\\webApps\\projects\\DisconnectDB\\logs\\accessDB.log",
+  "fileServer": "FILES",
+  "domain":     "company.ru",
+  "ldapConfig": {
+    "url":      "ldap://172.16.1.12",
+    "baseDN":   "dc=company,dc=ru",
+    "username": "support@company.ru",
+    "password": "xxxxxx"
+  },
+  "mongoConfig": {
+    "uri":        "mongodb://accessDBUser:xxxxxx@172.16.1.1:27017/accessDB",
+    "collection": "sessions"
+  },
+  "groupName":  "admins",
+  "jabber": {
+    "login":     "info@jabber.company.ru",
+    "password":  "xxxxxx",
+    "recipient": "all@broadcast.jabber.company.ru"
+  },
+  "filesArr": [
+    [ "N:\\Database\\MDB1\\MDB1.mdb",
+      "N:\\Database\\MDB1\\MDB1.ldb" ],
+    [ "N:\\Database\\MDB2\\MDB2.mdb",
+      "N:\\Database\\MDB2\\MDB2.ldb"],
+    [ "N:\\Database\\MDB3\\MDB3.mdb",
+      "N:\\Database\\MDB3\\MDB3.ldb"]
+  ],
+  "notifyTxt": [
+    "Обновлена программа 1",
+    "Проведено обновление 2. Администратор.",
+    "Проведено обновление 3. Администратор",
+    "Проведено обновление 4. Администратор."
+  ]
+}

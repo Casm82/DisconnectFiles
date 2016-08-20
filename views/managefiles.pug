@@ -1,0 +1,48 @@
+extends layout
+block css
+  link(rel='stylesheet', href='/styles/index.css')
+block scripts
+  script(src="/socket.io/socket.io.js")
+  script(src="/scripts/files.js")
+  script(src="/scripts/colors.js")
+block content
+  div= config
+  if (session.user)
+    div#workArea
+      h1 Выберите задачу:
+      div#notifyUpdate
+        h2 Отправить уведомление
+        each txt,num in notifyTxt
+          div("id"="notify-" + num).notifyButtons
+            q= txt
+      div#confirmSend
+        | Уведомление будет отправлено всем пользователям jabber
+        div
+          button.confirmSend(value="yes")
+            img(src="/images/dialog-ok-apply.png" alt="Отправить" title="Отправить" width="16px" heigth="16px")
+            |  Да, отправить
+          button.confirmSend(value="no", autofocus)
+            img(src="/images/dialog-close.png" alt="Закрыть" title="Закрыть" width="16px" heigth="16px")
+            |  Нет, отменить
+
+      div#filesManagement
+        h2 Отключить файлы на сервере&nbsp
+          span= fileServer
+        each files,num in filesJade
+          - var baseDir = files[0].replace(/\\(\w+\.(m|l)db)$/,"")
+          div("id"="files-" + num, "data-dir"=baseDir).manageButtons
+            div Отключить файлы в каталоге&nbsp
+              strong= baseDir
+              span :&nbsp
+              each file in files
+                span= file.replace(/(.*)\\/,"").toUpperCase()
+                span &nbsp
+      div#confirmDisconnect
+        | Все открытые файлы будут закрыты. Подтверждаете?
+        div
+          button.confirmDisconnect(value="yes")
+            img(src="/images/dialog-ok-apply.png" alt="Подтвердить" title="Подтвердить" width="16px" heigth="16px")
+            |  да
+          button.confirmDisconnect(value="no", autofocus)
+            img(src="/images/dialog-close.png" alt="Отменить" title="Отменить" width="16px" heigth="16px")
+            |  нет

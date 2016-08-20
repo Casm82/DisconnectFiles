@@ -1,0 +1,14 @@
+h2 Отчёт об отключении файлов:
+table#report
+  tr
+    th Отключаемый файл
+    th Статус
+  each file, idx in files
+    tr
+      td= file
+      td(id=idx).statusWait отключается
+
+div#finalResult
+
+a(href="/")
+  button Вернуться на страницу управления

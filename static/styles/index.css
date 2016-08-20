@@ -1,0 +1,120 @@
+body { font: normal 16px/16px segoe ui, tahoma, sans;}
+h1 {font-size: 1.25em;}
+h2 {font-size: 1.1em;}
+
+#errorMsg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40em;
+  margin-top: -4em;
+  margin-left: -20em;
+  text-align: center;
+}
+
+#login{
+  margin-top: -12em;
+  margin-left: -9em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+#workArea {
+  float: left;
+  margin-bottom: 2em;
+}
+
+header  {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+}
+
+footer  {
+  position: fixed;
+  right: 1em;
+  bottom: 0em;
+  font-size: 0.85em;
+  width:  25%;
+  text-align: right;
+  z-index: -1;
+}
+
+form div { margin: 0.5em 0; }
+
+#errorMsg p, #filesManagement > ul > li {margin: 0.5em;}
+
+input, button {
+  margin: 0 0.25em;
+  border: 2px solid lightgrey;
+}
+
+.notifyButtons, .manageButtons  {
+  border: 1px solid grey;
+  padding: 0.35em;
+  border-radius: 3px;
+  margin: 0.5em;
+  cursor: pointer;
+}
+.notifyButtons:hover, .manageButtons:hover { 
+  background: yellow;
+  box-shadow: 0px 1px 2px 2px rgba(0,0,0,0.5);
+}
+
+button.confirmDisconnect, button.confirmSend {margin: 1em;}
+button[value="yes"] { position: absolute; left:  1em;}
+button[value="no"]   { position: absolute; right: 1em;}
+
+#confirmSend, #confirmDisconnect, #loginMsg { display: none; }
+
+#confirmSend, #confirmDisconnect {
+  position: fixed;
+  width: 20em;
+  height: 4em;
+  left: 50%;
+  top: 50%;
+  margin-left: -10em;
+  margin-top: -2em;
+  padding: 1em;
+  border: 1px solid grey;
+  border-radius: 4px;
+  box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.5);
+  background-color: white;
+  z-index: 2;
+}
+
+#loginMsg {
+  color: red;
+  position: relative;
+  left: -2em;
+}
+  
+q {font-style: italic;}
+
+table#report {
+  border: 1px solid black;
+  border-collapse: collapse; 
+}
+table#report td, table#report th {
+  border: 1px solid black;
+  padding: 0.25em;
+}
+
+table#report td.statusWait {
+  background-color: yellow;
+}
+
+table#report td.statusOK {
+  background-color: lime;
+}
+
+table#report td.statusError {
+  background-color: red;
+}
+
+#finalResult {
+  padding: 1em 0 0;
+  height: 2em;
+  font-weight: bold;
+}

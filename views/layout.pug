@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title= title
+    block css
+  body
+    header
+      if (session.user)
+        form(method="GET", action="/logout")
+          input(type="submit", value="Завершить сеанс " + session.user.username)
+    block scripts
+    block content
+    footer
+      p тел. 10-01
